@@ -39,7 +39,7 @@
         }
         label {
             display: block;
-            padding: 5px;
+            padding: 2px;
             cursor: pointer;
         }
         input[type="radio"], input[type="text"] {
@@ -122,32 +122,32 @@
         <form id="sarcfForm">
             <div class="question">
                 <p>1. Quelle difficulté avez-vous à soulever et porter 4,5 kg (par exemple, une bouteille d'eau de 5 litres) ?</p>
-                <label><input type="radio" name="q1" value="0"> Aucune difficulté</label><br>
-                <label><input type="radio" name="q1" value="1"> Quelques difficultés</label><br>
+                <label><input type="radio" name="q1" value="0"> Aucune difficulté</label>
+                <label><input type="radio" name="q1" value="1"> Quelques difficultés</label>
                 <label><input type="radio" name="q1" value="2"> Beaucoup de difficultés ou incapacité</label>
             </div>
             <div class="question">
                 <p>2. Quelle difficulté avez-vous à marcher dans une pièce ?</p>
-                <label><input type="radio" name="q2" value="0"> Aucune difficulté</label><br>
-                <label><input type="radio" name="q2" value="1"> Quelques difficultés</label><br>
+                <label><input type="radio" name="q2" value="0"> Aucune difficulté</label>
+                <label><input type="radio" name="q2" value="1"> Quelques difficultés</label>
                 <label><input type="radio" name="q2" value="2"> Beaucoup de difficultés ou incapacité</label>
             </div>
             <div class="question">
                 <p>3. Quelle difficulté avez-vous à vous lever d'une chaise ou d'un lit ?</p>
-                <label><input type="radio" name="q3" value="0"> Aucune difficulté</label><br>
-                <label><input type="radio" name="q3" value="1"> Quelques difficultés</label><br>
+                <label><input type="radio" name="q3" value="0"> Aucune difficulté</label>
+                <label><input type="radio" name="q3" value="1"> Quelques difficultés</label>
                 <label><input type="radio" name="q3" value="2"> Beaucoup de difficultés ou incapacité</label>
             </div>
             <div class="question">
                 <p>4. Quelle difficulté avez-vous à monter un étage de 10 marches ?</p>
-                <label><input type="radio" name="q4" value="0"> Aucune difficulté</label><br>
-                <label><input type="radio" name="q4" value="1"> Quelques difficultés</label><br>
+                <label><input type="radio" name="q4" value="0"> Aucune difficulté</label>
+                <label><input type="radio" name="q4" value="1"> Quelques difficultés</label>
                 <label><input type="radio" name="q4" value="2"> Beaucoup de difficultés ou incapacité</label>
             </div>
             <div class="question">
                 <p>5. Combien de fois êtes-vous tombé au cours de l'année passée ?</p>
-                <label><input type="radio" name="q5" value="0"> Jamais</label><br>
-                <label><input type="radio" name="q5" value="1"> 1 à 3 fois</label><br>
+                <label><input type="radio" name="q5" value="0"> Jamais</label>
+                <label><input type="radio" name="q5" value="1"> 1 à 3 fois</label>
                 <label><input type="radio" name="q5" value="2"> Plus de 4 fois</label>
             </div>
             <button type="button" onclick="calculateScore()">Calculer le score</button>
@@ -184,10 +184,10 @@
             }
 
             const totalScore = q1 + q2 + q3 + q4 + q5;
-            let message = 'Votre score est de ' + totalScore + '. ';
+            let message = `Votre score est de ${totalScore} (valeur de 0 à 10). `;
 
-            if (totalScore > 4) {
-                message += 'Vous pourriez être atteint de sarcopénie. Consultez un professionnel de santé pour une évaluation plus approfondie.';
+            if (totalScore >= 4) {
+                message += 'Vous pourriez être atteint de sarcopénie.';
             } else {
                 message += 'Votre score est dans la normale. Continuez à surveiller votre santé musculaire.';
             }

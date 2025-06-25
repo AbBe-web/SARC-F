@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire SARC-F</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        a {
+            color: #007BFF;
+        }
+        p {
+            margin-bottom: 1em;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            padding: 5px;
+            cursor: pointer;
+        }
+        input[type="radio"], input[type="text"] {
+            margin-right: 8px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s ease-in-out;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        #result, #print-section {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            background: #e3f2fd;
+            color: #007BFF;
+            width: 100%;
+        }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-row label {
+            margin-right: 10px;
+            flex: 1;
+        }
+        .form-row input {
+            flex: 2;
+        }
+        @media (max-width: 480px) {
+            .form-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .form-row label, .form-row input {
+                width: 100%;
+            }
+        }
+        @media print {
+            body {
+                height: auto;
+            }
+            .container {
+                max-width: 100%;
+                box-shadow: none;
+            }
+            #print-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Bandeau RGPD -->
+        <div class="rgpd-banner">
+            Ce questionnaire, hébergé sur le site Github, ne stocke pas vos données. Vous pouvez l'imprimer pour votre usage personnel ou médical.
+            En continuant, vous acceptez que les données saisies puissent être affichées sur votre écran ou imprimées.
+            <a href="#" target="_blank" rel="noopener noreferrer">Consulter la politique de confidentialité</a> |
+            <a href="https://www.cnil.fr/fr/les-droits-pour-maitriser-vos-donnees-personnelles" target="_blank" rel="noopener noreferrer">Vos droits (CNIL)</a>
+        </div>
+        <h1>Questionnaire SARC-F</h1>
+        <form id="sarcfForm">
+            <div class="question">
+                <p>1. Quelle difficulté avez-vous à soulever et porter 4,5 kg (par exemple, une bouteille d'eau de 5 litres) ?</p>
+                <label><input type="radio" name="q1" value="0"> Aucune difficulté</label><br>
+                <label><input type="radio" name="q1" value="1"> Quelques difficultés</label><br>
+                <label><input type="radio" name="q1" value="2"> Beaucoup de difficultés ou incapacité</label>
+            </div>
+            <div class="question">
+                <p>2. Quelle difficulté avez-vous à marcher dans une pièce ?</p>
+                <label><input type="radio" name="q2" value="0"> Aucune difficulté</label><br>
+                <label><input type="radio" name="q2" value="1"> Quelques difficultés</label><br>
+                <label><input type="radio" name="q2" value="2"> Beaucoup de difficultés ou incapacité</label>
+            </div>
+            <div class="question">
+                <p>3. Quelle difficulté avez-vous à vous lever d'une chaise ou d'un lit ?</p>
+                <label><input type="radio" name="q3" value="0"> Aucune difficulté</label><br>
+                <label><input type="radio" name="q3" value="1"> Quelques difficultés</label><br>
+                <label><input type="radio" name="q3" value="2"> Beaucoup de difficultés ou incapacité</label>
+            </div>
+            <div class="question">
+                <p>4. Quelle difficulté avez-vous à monter un étage de 10 marches ?</p>
+                <label><input type="radio" name="q4" value="0"> Aucune difficulté</label><br>
+                <label><input type="radio" name="q4" value="1"> Quelques difficultés</label><br>
+                <label><input type="radio" name="q4" value="2"> Beaucoup de difficultés ou incapacité</label>
+            </div>
+            <div class="question">
+                <p>5. Combien de fois êtes-vous tombé au cours de l'année passée ?</p>
+                <label><input type="radio" name="q5" value="0"> Jamais</label><br>
+                <label><input type="radio" name="q5" value="1"> 1 à 3 fois</label><br>
+                <label><input type="radio" name="q5" value="2"> Plus de 4 fois</label>
+            </div>
+            <button type="button" onclick="calculateScore()">Calculer le score</button>
+        </form>
+        <div id="result" class="result"></div>
+        <div id="print-section" style="display: none;">
+            <div class="form-row">
+                <label for="firstName">Prénom : </label>
+                <input type="text" id="firstName" name="firstName (facultatif)">
+            </div>
+            <div class="form-row">
+                <label for="lastName">Nom : </label>
+                <input type="text" id="lastName" name="lastName (facultatif)">
+            </div>
+            <div class="form-row">
+                <label for="date">Date : </label>
+                <input type="text" id="date" name="date" readonly>
+            </div>
+            <button type="button" onclick="window.print()">Imprimer</button>
+        </div>
+    </div>
+    <script>
+        function calculateScore() {
+            const form = document.forms['sarcfForm'];
+            const q1 = parseInt(form['q1'].value);
+            const q2 = parseInt(form['q2'].value);
+            const q3 = parseInt(form['q3'].value);
+            const q4 = parseInt(form['q4'].value);
+            const q5 = parseInt(form['q5'].value);
+
+            if (isNaN(q1) || isNaN(q2) || isNaN(q3) || isNaN(q4) || isNaN(q5)) {
+                alert('Merci de répondre à toutes les questions.');
+                return;
+            }
+
+            const totalScore = q1 + q2 + q3 + q4 + q5;
+            let message = 'Votre score est de ' + totalScore + '. ';
+
+            if (totalScore > 4) {
+                message += 'Vous pourriez être atteint de sarcopénie. Consultez un professionnel de santé pour une évaluation plus approfondie.';
+            } else {
+                message += 'Votre score est dans la normale. Continuez à surveiller votre santé musculaire.';
+            }
+
+            document.getElementById('result').innerText = message;
+            document.getElementById('print-section').style.display = 'block';
+            const currentDate = new Date().toLocaleDateString();
+            document.getElementById('date').value = currentDate;
+        }
+    </script>
+</body>
+</html>
